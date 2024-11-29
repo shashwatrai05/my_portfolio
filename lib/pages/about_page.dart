@@ -48,7 +48,7 @@ class _AboutPageState extends State<AboutPage> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
                   child: Image(
-                    image: AssetImage('avatar4.png')
+                    image: AssetImage('assets/avatar4.png')
                     , // Ensure the image path is correct
                     width: 300,
                     height: 300,
