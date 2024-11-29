@@ -33,11 +33,25 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // User Image
-            const CircleAvatar(
-              radius: 100,
-              backgroundImage: AssetImage('assets/avatar4.png'),
-              backgroundColor: Colors.transparent,
-            ),
+            Padding(
+  padding: const EdgeInsets.symmetric(vertical: 20),
+  child: SizedBox(
+    width: 200,
+    height: 200,
+    child: Image.network(
+      //"https://drive.google.com/file/d/1Cwm-23bEIqY32wVjO1cZETSu9Zimwyue/view?usp=sharing",
+      "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png",
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return const Center(child: CircularProgressIndicator());
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return const Icon(Icons.error, color: Colors.red);
+      },
+      fit: BoxFit.cover,
+    ),
+  ),
+),
             const SizedBox(height: 30),
 
             // Name and Developer Info

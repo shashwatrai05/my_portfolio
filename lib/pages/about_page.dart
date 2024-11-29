@@ -47,9 +47,7 @@ class _AboutPageState extends State<AboutPage> {
                 // Profile Image with rounded border and larger size
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image(
-                    image: AssetImage('assets/avatar4.png')
-                    , // Ensure the image path is correct
+                  child: Image.network('https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png', // Ensure the image path is correct
                     width: 300,
                     height: 300,
                     fit: BoxFit.cover,

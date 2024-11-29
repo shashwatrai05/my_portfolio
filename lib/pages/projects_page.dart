@@ -6,7 +6,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "E-CELL App",
       description: "A mobile app built using Flutter.",
-      imageUrl: "assets/Projects/E-Cell_App.jpeg",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892195/E-Cell_App_kqylew.jpg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "",
@@ -14,7 +14,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Pardarsh App",
       description: "A cross-platform app developed with React Native.",
-      imageUrl: "assets/Projects/Pardarsh.jpeg",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892196/Pardarsh_vk9fm4.jpg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "https://github.com/shashwatrai05/pardarsh",
@@ -22,7 +22,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Uddeshhya ERP",
       description: "An iOS/Android app built with Swift and Kotlin.",
-      imageUrl: "assets/Projects/Uddeshyya.jpeg",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892197/Uddeshyya_fmfsit.jpg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "",
@@ -33,7 +33,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Market Watch",
       description: "A single-page application built using Angular.",
-      imageUrl: "assets/Projects/MarketWatch.png",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892196/MarketWatch_p1iyyz.png",
       techStack: "Flutter, Firebase",
       projectLink: "https://market-watch-c162a.web.app/#/",
       githubLink: "",
@@ -41,7 +41,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "E-CELL Web",
       description: "A responsive website built with React and Node.js.",
-      imageUrl: "assets/Projects/E-Cell_Web.png",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892196/E-Cell_Web_s0hesk.png",
       techStack: "HTML,CSS,ReactJS,Node.js",
       projectLink: "https://e-cell.in/",
       githubLink: "",
@@ -49,7 +49,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Pardarsh Dashboard",
       description: "A website built using HTML, CSS, and JavaScript.",
-      imageUrl: "assets/Projects/Pardarsh_web.jpeg",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892197/Pardarsh_web_qtvqke.jpg",
       techStack: "HTML, CSS, JavaScript",
       projectLink: "",
       githubLink: "https://github.com/satyagyasingh/Pardarsh",
@@ -60,7 +60,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Spotify Clone",
       description: "UI/UX design for a mobile app using Figma.",
-      imageUrl: "assets/Projects/Spotify.png",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892196/Spotify_rl9sm7.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/5nyqNfaZKwHeag4fnVkNAG/Spotify-Clone?node-id=0-1&t=pP3iB08uAbh7X9RN-1",
@@ -69,7 +69,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "JurishTech",
       description: "Designing a website with Adobe XD.",
-      imageUrl: "assets/Projects/JurishTech.png",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892196/JurishTech_pg6135.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/ntlKIglity4QEXq09378Cx/JurishTech?node-id=0-1&t=0kSRAJqIyk44R4My-1",
@@ -78,7 +78,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "BusTech",
       description: "A complete UI/UX redesign for a corporate website.",
-      imageUrl: "assets/Projects/BusTech.png",
+      imageUrl: "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892194/BusTech_wet40u.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/yLCukiY98FflTxZx0V5YLm/Bus?node-id=0-1&t=tEBYsLYViP2fTS1J-1",

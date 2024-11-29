@@ -47,8 +47,10 @@ class _LeftNavBarState extends State<LeftNavBar> {
             child: SizedBox(
               width: 100,
               height: 100,
-              child: Image(
-                image:AssetImage("logo.png"))
+              child:Image.network(
+                //"https://drive.google.com/file/d/1mP3ukiK8r_EwzIWYu12cN490AfVq_g50/view?usp=sharing"
+                "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892157/logo_ggsdnb.png",
+                )
             ),
           ),
 
