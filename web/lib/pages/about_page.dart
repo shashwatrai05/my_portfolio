@@ -49,7 +49,7 @@ class _AboutPageState extends State<AboutPage> {
                   borderRadius: BorderRadius.circular(20.0),
                   child: Image(
                     image:AssetImage(
-                    'avatar4.png'), // Ensure the image path is correct
+                    'assets/avatar4.png'), // Ensure the image path is correct
                     width: 300,
                     height: 300,
                     fit: BoxFit.cover,

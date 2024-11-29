@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             // User Image
             const CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage('avatar4.png'),
+              backgroundImage: AssetImage('assets/avatar4.png'),
               backgroundColor: Colors.transparent,
             ),
             const SizedBox(height: 30),

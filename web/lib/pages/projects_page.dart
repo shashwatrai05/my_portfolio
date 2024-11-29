@@ -6,7 +6,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "E-CELL App",
       description: "A mobile app built using Flutter.",
-      imageUrl: "assets/ProjectsE-Cell_App.jpeg",
+      imageUrl: "assets/Projects/E-Cell_App.jpeg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "",
@@ -14,7 +14,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Pardarsh App",
       description: "A cross-platform app developed with React Native.",
-      imageUrl: "assets/ProjectsPardarsh.jpeg",
+      imageUrl: "assets/Projects/Pardarsh.jpeg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "https://github.com/shashwatrai05/pardarsh",
@@ -22,7 +22,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Uddeshhya ERP",
       description: "An iOS/Android app built with Swift and Kotlin.",
-      imageUrl: "assets/ProjectsUddeshyya.jpeg",
+      imageUrl: "assets/Projects/Uddeshyya.jpeg",
       techStack: "Flutter, Dart, Firebase",
       projectLink: "",
       githubLink: "",
@@ -33,7 +33,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Market Watch",
       description: "A single-page application built using Angular.",
-      imageUrl: "assets/ProjectsMarketWatch.png",
+      imageUrl: "assets/Projects/MarketWatch.png",
       techStack: "Flutter, Firebase",
       projectLink: "https://market-watch-c162a.web.app/#/",
       githubLink: "",
@@ -41,7 +41,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "E-CELL Web",
       description: "A responsive website built with React and Node.js.",
-      imageUrl: "assets/ProjectsE-Cell_Web.png",
+      imageUrl: "assets/Projects/E-Cell_Web.png",
       techStack: "HTML,CSS,ReactJS,Node.js",
       projectLink: "https://e-cell.in/",
       githubLink: "",
@@ -49,7 +49,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Pardarsh Dashboard",
       description: "A website built using HTML, CSS, and JavaScript.",
-      imageUrl: "assets/ProjectsPardarsh_web.jpeg",
+      imageUrl: "assets/Projects/Pardarsh_web.jpeg",
       techStack: "HTML, CSS, JavaScript",
       projectLink: "",
       githubLink: "https://github.com/satyagyasingh/Pardarsh",
@@ -60,7 +60,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "Spotify Clone",
       description: "UI/UX design for a mobile app using Figma.",
-      imageUrl: "assets/ProjectsSpotify.png",
+      imageUrl: "assets/Projects/Spotify.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/5nyqNfaZKwHeag4fnVkNAG/Spotify-Clone?node-id=0-1&t=pP3iB08uAbh7X9RN-1",
@@ -69,7 +69,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "JurishTech",
       description: "Designing a website with Adobe XD.",
-      imageUrl: "assets/ProjectsJurishTech.png",
+      imageUrl: "assets/Projects/JurishTech.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/ntlKIglity4QEXq09378Cx/JurishTech?node-id=0-1&t=0kSRAJqIyk44R4My-1",
@@ -78,7 +78,7 @@ class ProjectsPage extends StatelessWidget {
     Project(
       title: "BusTech",
       description: "A complete UI/UX redesign for a corporate website.",
-      imageUrl: "assets/ProjectsBusTech.png",
+      imageUrl: "assets/Projects/BusTech.png",
       techStack: "Figma",
       projectLink:
           "https://www.figma.com/design/yLCukiY98FflTxZx0V5YLm/Bus?node-id=0-1&t=tEBYsLYViP2fTS1J-1",
