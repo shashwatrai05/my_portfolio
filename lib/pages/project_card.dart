@@ -50,8 +50,9 @@ class _ProjectCardState extends State<ProjectCard> {
             // Image Section
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                widget.project.imageUrl,
+              child: Image(
+
+                image:AssetImage(widget.project.imageUrl),
                 fit: BoxFit.cover,
                 width: imageWidth,
                 height: imageHeight,

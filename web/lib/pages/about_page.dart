@@ -47,8 +47,9 @@ class _AboutPageState extends State<AboutPage> {
                 // Profile Image with rounded border and larger size
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image.asset(
-                    'avatar4.png', // Ensure the image path is correct
+                  child: Image(
+                    image:AssetImage(
+                    'avatar4.png'), // Ensure the image path is correct
                     width: 300,
                     height: 300,
                     fit: BoxFit.cover,

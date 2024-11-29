@@ -47,7 +47,8 @@ class _LeftNavBarState extends State<LeftNavBar> {
             child: SizedBox(
               width: 100,
               height: 100,
-              child: Image.asset("logo.png")
+              child: Image(
+                image:AssetImage("logo.png"))
             ),
           ),
 

@@ -49,14 +49,15 @@ class _ProjectCardState extends State<ProjectCard> {
           children: [
             // Image Section
             ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                widget.project.imageUrl,
-                fit: BoxFit.cover,
-                width: imageWidth,
-                height: imageHeight,
-              ),
-            ),
+  borderRadius: BorderRadius.circular(12),
+  child: Image(
+    image: AssetImage(widget.project.imageUrl),
+    fit: BoxFit.cover,
+    width: imageWidth,
+    height: imageHeight,
+  ),
+),
+
             // Project Title Below Image
             Positioned(
               bottom: 10,
