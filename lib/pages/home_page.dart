@@ -16,8 +16,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkTheme = theme.brightness == Brightness.dark;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600; // Define a breakpoint for mobile
 
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isDarkTheme
@@ -31,27 +34,27 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // User Image
             Padding(
-  padding: const EdgeInsets.symmetric(vertical: 20),
-  child: SizedBox(
-    width: 200,
-    height: 200,
-    child: Image.network(
-      //"https://drive.google.com/file/d/1Cwm-23bEIqY32wVjO1cZETSu9Zimwyue/view?usp=sharing",
-      "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png",
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return const Center(child: CircularProgressIndicator());
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return const Icon(Icons.error, color: Colors.red);
-      },
-      fit: BoxFit.cover,
-    ),
-  ),
-),
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: SizedBox(
+                width: isMobile ? 120 : 200, // Adjust size for mobile
+                height: isMobile ? 120 : 200, // Adjust size for mobile
+                child: Image.network(
+                  "https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png",
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.error, color: Colors.red);
+                  },
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             const SizedBox(height: 30),
 
             // Name and Developer Info
@@ -60,19 +63,21 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "Hi, I'm Shashwat!",
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: isMobile ? 24 : 32, // Adjust font size for mobile
                     fontWeight: FontWeight.bold,
                     color: theme.primaryColor,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   'Passionate Flutter Developer',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: isMobile ? 16 : 20, // Adjust font size for mobile
                     fontWeight: FontWeight.w300,
                     color: theme.textTheme.bodyLarge?.color?.withOpacity(0.8),
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
@@ -106,7 +111,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Text(
                     'Contact Me',
-                    style: TextStyle(fontSize: 16, color: isDarkTheme? Colors.black:Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
+                      color: isDarkTheme ? Colors.black : Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -114,8 +123,9 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 40),
 
             // Social Media Icons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: isMobile ? 10 : 20, // Adjust spacing for mobile
               children: [
                 _buildSocialIcon(
                   FontAwesomeIcons.linkedin,
@@ -138,11 +148,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSocialIcon(IconData icon, String url) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
     return MouseRegion(
       onEnter: (_) => setState(() => hoveredSocialIcons[icon.toString()] = true),
       onExit: (_) => setState(() => hoveredSocialIcons[icon.toString()] = false),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           transform: hoveredSocialIcons[icon.toString()] == true
@@ -158,12 +170,12 @@ class _HomePageState extends State<HomePage> {
               }
             },
             child: CircleAvatar(
-              radius: 25,
+              radius: isMobile ? 20 : 25, // Adjust size for mobile
               backgroundColor: Colors.grey.withOpacity(0.2),
               child: Icon(
                 icon,
                 color: Colors.grey[700],
-                size: 20,
+                size: isMobile ? 16 : 20, // Adjust icon size for mobile
               ),
             ),
           ),

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ServicesPage extends StatelessWidget {
+class ServicesPage extends StatefulWidget {
+  @override
+  State<ServicesPage> createState() => _ServicesPageState();
+}
+
+class _ServicesPageState extends State<ServicesPage> {
   final List<Service> services = [
     Service(
       title: "  Mobile App\nDevelopment",
@@ -33,6 +38,8 @@ class ServicesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkTheme = theme.brightness == Brightness.dark;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
 
     return Container(
       decoration: BoxDecoration(
@@ -47,10 +54,10 @@ class ServicesPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center, // Center the entire column
-          mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Header section (Similar to About Page)
+            // Header section
             Text(
               "My Services",
               style: theme.textTheme.headlineSmall?.copyWith(
@@ -66,14 +73,24 @@ class ServicesPage extends StatelessWidget {
                 color: isDarkTheme ? Colors.white70 : Colors.black54,
                 height: 1.6,
               ),
-              textAlign: TextAlign.center, // Center the text
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
 
-            // Services displayed in a single row (non-scrollable)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center, // Center the row
-              children: services.map((service) => ServiceCard(service: service)).toList(),
+            // Responsive grid for service cards
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: isMobile ? 1 : (screenWidth < 1024 ? 2 : 4),
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                  childAspectRatio: 3 / 4, // Adjust aspect ratio for consistent shape
+                ),
+                itemCount: services.length,
+                itemBuilder: (context, index) {
+                  return ServiceCard(service: services[index]);
+                },
+              ),
             ),
           ],
         ),
@@ -116,8 +133,8 @@ class _ServiceCardState extends State<ServiceCard> {
       onExit: (_) => setState(() => _isHovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        margin: const EdgeInsets.symmetric(horizontal: 10), // Add space between cards
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: isDarkTheme
               ? Colors.white.withOpacity(0.1)
@@ -132,8 +149,8 @@ class _ServiceCardState extends State<ServiceCard> {
           ],
         ),
         transform: _isHovered ? Matrix4.translationValues(0, -4, 0) : Matrix4.identity(),
-        width: 240,  // Set width for consistent card size
-        height: 250, // Set height for consistent card size
+        width: 280, // Fixed width for consistency
+        height: 200, // Fixed height for consistency
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -146,16 +163,18 @@ class _ServiceCardState extends State<ServiceCard> {
             Text(
               widget.service.title,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: isDarkTheme ? Colors.white : Colors.black,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               widget.service.description,
               textAlign: TextAlign.center,
               style: TextStyle(
+                fontSize: 14,
                 color: isDarkTheme ? Colors.white70 : Colors.black54,
               ),
             ),

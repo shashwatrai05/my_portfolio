@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Portfolio Website',
+      title: 'Shashwat Rai',
       theme: ThemeData(
         primaryColor: const Color(0xFF6200EE), // Accent color
         scaffoldBackgroundColor: Colors.white,

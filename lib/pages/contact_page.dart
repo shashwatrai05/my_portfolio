@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert'; // For encoding JSON data
+import 'dart:convert';
 
 class ContactPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
-  final TextEditingController _subjectController = TextEditingController(); // Subject field
+  final TextEditingController _subjectController = TextEditingController();
 
-  // Change return type to Future<bool>
   Future<bool> _sendEmail(String name, String email, String subject, String message) async {
     final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
 
@@ -20,27 +19,24 @@ class ContactPage extends StatelessWidget {
           'Content-Type': 'application/json',
         },
         body: json.encode({
-          'service_id': 'service_mqqwwht', // Replace with your service_id
-          'template_id': 'template_zw9h2hv', // Replace with your template_id
-          'user_id': 'Fw1JaWi8CImATBuGr', // Replace with your user_id (public key)
+          'service_id': 'service_mqqwwht',
+          'template_id': 'template_zw9h2hv',
+          'user_id': 'Fw1JaWi8CImATBuGr',
           'template_params': {
             'user_name': name,
             'user_email': email,
-            'subject': subject, // Adding subject to the template parameters
+            'subject': subject,
             'message': message,
           }
         }),
       );
 
       if (response.statusCode == 200) {
-        // Email sent successfully
         return true;
       } else {
-        // Error while sending email
         return false;
       }
     } catch (e) {
-      // Handle network or other errors
       return false;
     }
   }
@@ -49,6 +45,11 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkTheme = theme.brightness == Brightness.dark;
+
+    // Get screen width to adjust padding and form width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
+    final formPadding = isMobile ? 16.0 : 32.0; // Reduce padding for mobile
 
     return Scaffold(
       body: Container(
@@ -64,7 +65,7 @@ class ContactPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 150),
+              padding: EdgeInsets.symmetric(horizontal: formPadding),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -77,6 +78,7 @@ class ContactPage extends StatelessWidget {
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: isDarkTheme ? Colors.white : Colors.black,
+                        fontSize: isMobile ? 24 : 32, // Dynamic font size for header
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -86,6 +88,7 @@ class ContactPage extends StatelessWidget {
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: isDarkTheme ? Colors.white70 : Colors.black87,
                         height: 1.6,
+                        fontSize: isMobile ? 14 : 18, // Dynamic font size for description
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -132,7 +135,7 @@ class ContactPage extends StatelessWidget {
 
                         // Subject Input
                         TextFormField(
-                          controller: _subjectController,  // Subject Controller
+                          controller: _subjectController,
                           decoration: const InputDecoration(
                             labelText: "Subject",
                             prefixIcon: Icon(Icons.subject),
@@ -173,17 +176,16 @@ class ContactPage extends StatelessWidget {
                               bool success = await _sendEmail(
                                 _nameController.text,
                                 _emailController.text,
-                                _subjectController.text, // Pass the subject text
+                                _subjectController.text,
                                 _messageController.text,
                               );
                               if (success) {
-                                // Show success message
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(content: Text('Email Sent Successfully!')),
                                 );
                                 _nameController.clear();
                                 _emailController.clear();
-                                _subjectController.clear();  // Clear subject field
+                                _subjectController.clear();
                                 _messageController.clear();
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -192,8 +194,8 @@ class ContactPage extends StatelessWidget {
                               }
                             }
                           },
-                          icon: const Icon(Icons.send, color: Colors.white,),
-                          label: const Text("Send Message", style: TextStyle(color: Colors.white),),
+                          icon: const Icon(Icons.send, color: Colors.white),
+                          label: const Text("Send Message", style: TextStyle(color: Colors.white)),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
                               vertical: 16,
@@ -217,6 +219,7 @@ class ContactPage extends StatelessWidget {
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: isDarkTheme ? Colors.white70 : Colors.black87,
                         fontWeight: FontWeight.bold,
+                        fontSize: isMobile ? 14 : 18, // Adjust font size for mobile
                       ),
                       textAlign: TextAlign.center,
                     ),

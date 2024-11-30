@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';  // Import url_launcher
+import 'package:url_launcher/url_launcher.dart'; // Import url_launcher
 
 class AboutPage extends StatefulWidget {
   @override
@@ -10,11 +10,10 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   Map<String, bool> hoveredSkills = {};
 
-  // Function to launch the resume URL in a new browser tab
   Future<void> _launchResume() async {
-    final resumeUrl = 'https://firebasestorage.googleapis.com/v0/b/flutter-chat-ec3a8.appspot.com/o/Resume-%20Shashwat%20Rai.pdf?alt=media&token=5a8339a5-2ef2-4560-8ff5-9466ff779783'; // Replace with your actual PDF URL
+    final resumeUrl = 'https://firebasestorage.googleapis.com/v0/b/flutter-chat-ec3a8.appspot.com/o/Resume-%20Shashwat%20Rai.pdf?alt=media&token=5a8339a5-2ef2-4560-8ff5-9466ff779783';
     if (await canLaunch(resumeUrl)) {
-      await launch(resumeUrl, forceWebView: false, forceSafariVC: false); // Opens the link in a new browser tab
+      await launch(resumeUrl, forceWebView: false, forceSafariVC: false);
     } else {
       throw 'Could not launch $resumeUrl';
     }
@@ -24,6 +23,8 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkTheme = theme.brightness == Brightness.dark;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
 
     return Container(
       decoration: BoxDecoration(
@@ -36,133 +37,163 @@ class _AboutPageState extends State<AboutPage> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 200.0, vertical: 40.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Profile Section (Photo and About Me Paragraph)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Profile Image with rounded border and larger size
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: Image.network('https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png', // Ensure the image path is correct
-                    width: 300,
-                    height: 300,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                // Description with updated content
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hello, I'm Shashwat Rai",
-                        style: theme.textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: isDarkTheme ? Colors.white : Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "Currently pursuing a B.Tech in Computer Science and Engineering at KIET, Ghaziabad. I specialize in app development with Flutter & Firebase, and I’m proficient in C, Java, and Python. I also have expertise in UI/UX design using Figma.",
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: isDarkTheme ? Colors.white70 : Colors.black54,
-                          height: 1.6,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "I have hands-on experience from internships at Ambuvians Healthcare and Roomsvital, and I currently serve as the Technical Lead at E-Cell KIET, App Development Captain at GDSC KIET, and MyGov India Campus Ambassador.",
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: isDarkTheme ? Colors.white70 : Colors.black54,
-                          height: 1.6,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "I've demonstrated leadership by leading teams in hackathons, organizing events, and serving as a core member of several tech communities. I'm also the Lead Organizer for E-Summit 2024 and SprintHacks 2.0.",
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: isDarkTheme ? Colors.white70 : Colors.black54,
-                          height: 1.6,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Profile Section
+              isMobile
+                  ? Column(
+                      children: [
+                        buildProfileImage(),
+                        const SizedBox(height: 20),
+                        buildProfileDescription(theme, isDarkTheme),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildProfileImage(),
+                        const SizedBox(width: 20),
+                        Expanded(child: buildProfileDescription(theme, isDarkTheme)),
+                      ],
+                    ),
+              const SizedBox(height: 40),
 
-            // Skills Section with hover animations and icons
-            Text(
-              "Skills",
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: isDarkTheme ? Colors.white : Colors.black,
+              // Skills Section
+              Text(
+                "Skills",
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: isDarkTheme ? Colors.white : Colors.black,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              children: [
-                skillCard("Flutter", FontAwesomeIcons.mobile, theme, isDarkTheme),
-                skillCard("Dart", FontAwesomeIcons.code, theme, isDarkTheme),
-                skillCard("Firebase", FontAwesomeIcons.fire, theme, isDarkTheme),
-                skillCard("C", FontAwesomeIcons.c, theme, isDarkTheme),
-                skillCard("Java", FontAwesomeIcons.java, theme, isDarkTheme),
-                skillCard("Python", FontAwesomeIcons.python, theme, isDarkTheme),
-                skillCard("UI/UX Design", FontAwesomeIcons.paintBrush, theme, isDarkTheme),
-                skillCard("Figma", FontAwesomeIcons.figma, theme, isDarkTheme),
-              ],
-            ),
-            const SizedBox(height: 40),
+              const SizedBox(height: 20),
+              Wrap(
+                spacing: 20,
+                runSpacing: 20,
+                alignment: WrapAlignment.center,
+                children: [
+                  skillCard("Flutter", FontAwesomeIcons.mobile, theme, isDarkTheme),
+                  skillCard("Dart", FontAwesomeIcons.code, theme, isDarkTheme),
+                  skillCard("Firebase", FontAwesomeIcons.fire, theme, isDarkTheme),
+                  skillCard("C", FontAwesomeIcons.c, theme, isDarkTheme),
+                  skillCard("Java", FontAwesomeIcons.java, theme, isDarkTheme),
+                  skillCard("Python", FontAwesomeIcons.python, theme, isDarkTheme),
+                  skillCard("UI/UX Design", FontAwesomeIcons.paintBrush, theme, isDarkTheme),
+                  skillCard("Figma", FontAwesomeIcons.figma, theme, isDarkTheme),
+                ],
+              ),
+              const SizedBox(height: 40),
 
-            // Metrics Section (Projects, Internships, Experience)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                metricCard("Projects", "15+", FontAwesomeIcons.listCheck, theme, isDarkTheme),
-                const SizedBox(width: 30),
-                metricCard("Internships", "3+", FontAwesomeIcons.laptopCode, theme, isDarkTheme),
-                const SizedBox(width: 30),
-                metricCard("Experience", "1 year", FontAwesomeIcons.userClock, theme, isDarkTheme),
-              ],
-            ),
-            const SizedBox(height: 40),
+              // Metrics Section
+              isMobile
+                  ? Column(
+                      children: [
+                        metricCard("Projects", "15+", FontAwesomeIcons.listCheck, theme, isDarkTheme),
+                        const SizedBox(height: 20),
+                        metricCard("Internships", "3+", FontAwesomeIcons.laptopCode, theme, isDarkTheme),
+                        const SizedBox(height: 20),
+                        metricCard("Experience", "1 year", FontAwesomeIcons.userClock, theme, isDarkTheme),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        metricCard("Projects", "15+", FontAwesomeIcons.listCheck, theme, isDarkTheme),
+                        metricCard("Internships", "3+", FontAwesomeIcons.laptopCode, theme, isDarkTheme),
+                        metricCard("Experience", "1 year", FontAwesomeIcons.userClock, theme, isDarkTheme),
+                      ],
+                    ),
+              const SizedBox(height: 40),
 
-            // Download Resume Button (With updated UI)
-           ElevatedButton.icon(
-  onPressed: _launchResume,  // Call function to launch PDF
-  icon: const Icon(
-    FontAwesomeIcons.download, 
-    size: 18,
-  ),
-  label: const Text("Download Resume"),
-  style: ElevatedButton.styleFrom(
-    foregroundColor: isDarkTheme ? Colors.black : Colors.white, // Text color (black for dark theme)
-    backgroundColor: theme.colorScheme.primary, // Using theme color.primary
-    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18), // Increased vertical padding to increase height
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-    elevation: 6,  // Slightly increased elevation for prominence
-    textStyle: TextStyle(
-      fontSize: 16, // Keeping the font size unchanged
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-)
-
-          ],
+              // Download Resume Button
+              ElevatedButton.icon(
+                onPressed: _launchResume,
+                icon: const Icon(
+                  FontAwesomeIcons.download,
+                  size: 18,
+                ),
+                label: const Text("Download Resume"),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: isDarkTheme ? Colors.black : Colors.white,
+                  backgroundColor: theme.colorScheme.primary,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  elevation: 6,
+                  textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  // Skill Card with hover effect and icons
+  Widget buildProfileImage() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: Image.network(
+        'https://res.cloudinary.com/dwlqu09lf/image/upload/v1732892060/avatar4_kj3w55.png',
+        width: isMobile? 150:300,
+        height: isMobile? 150:300,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget buildProfileDescription(ThemeData theme, bool isDarkTheme) {
+  // Determine screen width and check if it is mobile
+  final screenWidth = MediaQuery.of(context).size.width;
+  final isMobile = screenWidth < 600;
+
+  return Column(
+    crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Hello, I'm Shashwat Rai",
+        textAlign: isMobile ? TextAlign.center : TextAlign.start,
+        style: theme.textTheme.headlineSmall?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: isDarkTheme ? Colors.white : Colors.black,
+        ),
+      ),
+      const SizedBox(height: 10),
+      Text(
+        "Currently pursuing a B.Tech in Computer Science and Engineering at KIET, Ghaziabad. I specialize in app development with Flutter & Firebase, and I’m proficient in C, Java, and Python. I also have expertise in UI/UX design using Figma.",
+        textAlign: isMobile ? TextAlign.center : TextAlign.start,
+        style: theme.textTheme.bodyLarge?.copyWith(
+          color: isDarkTheme ? Colors.white70 : Colors.black54,
+          height: 1.6,
+        ),
+      ),
+      const SizedBox(height: 10),
+      Text(
+        "I have hands-on experience from internships at Ambuvians Healthcare and Roomsvital, and I currently serve as the Technical Lead at E-Cell KIET, App Development Captain at GDSC KIET, and MyGov India Campus Ambassador.",
+        textAlign: isMobile ? TextAlign.center : TextAlign.start,
+        style: theme.textTheme.bodyLarge?.copyWith(
+          color: isDarkTheme ? Colors.white70 : Colors.black54,
+          height: 1.6,
+        ),
+      ),
+      const SizedBox(height: 10),
+      Text(
+        "I've demonstrated leadership by leading teams in hackathons, organizing events, and serving as a core member of several tech communities. I'm also the Lead Organizer for E-Summit 2024 and SprintHacks 2.0.",
+        textAlign: isMobile ? TextAlign.center : TextAlign.start,
+        style: theme.textTheme.bodyLarge?.copyWith(
+          color: isDarkTheme ? Colors.white70 : Colors.black54,
+          height: 1.6,
+        ),
+      ),
+    ],
+  );
+}
+
+
   Widget skillCard(String label, IconData icon, ThemeData theme, bool isDarkTheme) {
     final skillKey = label; // Use skill name as the key for hover state
 
@@ -207,7 +238,6 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  // Metrics Card for Projects, Internships, and Experience
   Widget metricCard(String label, String value, IconData icon, ThemeData theme, bool isDarkTheme) {
     return Column(
       children: [
@@ -216,7 +246,7 @@ class _AboutPageState extends State<AboutPage> {
         Text(
           value,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: isDarkTheme ? Colors.white : Colors.black,
           ),
@@ -226,6 +256,7 @@ class _AboutPageState extends State<AboutPage> {
           label,
           style: TextStyle(
             fontSize: 14,
+            fontWeight: FontWeight.w500,
             color: isDarkTheme ? Colors.white70 : Colors.black54,
           ),
         ),
